@@ -5,6 +5,7 @@ import { SearchSection } from "@/components/SearchSection";
 import { CatalogSection } from "@/components/CatalogSection";
 import { Features } from "@/components/Features";
 import { ContactSection } from "@/components/ContactSection";
+import { AdminPanel } from "@/components/AdminPanel";
 
 export default function Index() {
   const [filters, setFilters] = useState<{ brand: string; body: string; budget: string; mileage: string } | undefined>();
@@ -18,6 +19,7 @@ export default function Index() {
       <CatalogSection filters={filters} onLoadingChange={setSearchLoading} />
       <Features />
       <ContactSection />
+      <AdminPanel />
     </>
   );
 }

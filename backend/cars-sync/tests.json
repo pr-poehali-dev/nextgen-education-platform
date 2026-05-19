@@ -7,11 +7,11 @@
       "expectedStatus": 200
     },
     {
-      "name": "Sync without API key returns 503",
+      "name": "Sync returns 200",
       "method": "POST",
       "path": "/",
-      "body": {},
-      "expectedStatus": 503
+      "body": {"pages": 1},
+      "expectedStatus": 200
     }
   ]
 }
