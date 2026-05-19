@@ -1,0 +1,22 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Search all cars returns 200",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Search with brand filter returns 200",
+      "method": "GET",
+      "path": "/?brand=Toyota",
+      "expectedStatus": 200
+    }
+  ]
+}

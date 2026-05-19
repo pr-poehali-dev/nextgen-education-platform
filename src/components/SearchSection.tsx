@@ -6,11 +6,22 @@ const bodyTypes = ["Любой", "Седан", "Кроссовер", "Хэтчб
 const budgets = ["до 500 000 ₽", "500 000 — 1 млн ₽", "1 — 2 млн ₽", "2 — 3 млн ₽", "от 3 млн ₽"];
 const mileages = ["Новый", "до 50 000 км", "до 100 000 км", "до 150 000 км", "любой пробег"];
 
-export function SearchSection() {
+interface SearchSectionProps {
+  onSearch: (filters: { brand: string; body: string; budget: string; mileage: string }) => void;
+  loading?: boolean;
+}
+
+export function SearchSection({ onSearch, loading }: SearchSectionProps) {
   const [brand, setBrand] = useState("Любая");
   const [body, setBody] = useState("Любой");
-  const [budget, setBudget] = useState("до 1 млн ₽");
+  const [budget, setBudget] = useState("1 — 2 млн ₽");
   const [mileage, setMileage] = useState("любой пробег");
+
+  const handleSearch = () => {
+    onSearch({ brand, body, budget, mileage });
+    const el = document.getElementById("catalog");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section id="search" className="py-24 md:py-36 relative z-10">
@@ -34,7 +45,7 @@ export function SearchSection() {
                 Марка
               </label>
               <div className="flex flex-wrap gap-2">
-                {brands.slice(0, 5).map((b) => (
+                {brands.slice(0, 6).map((b) => (
                   <button
                     key={b}
                     onClick={() => setBrand(b)}
@@ -118,8 +129,8 @@ export function SearchSection() {
             <p className="font-mono text-xs text-foreground/40">
               {brand} · {body} · {budget} · {mileage}
             </p>
-            <Button href="#catalog">
-              [Найти автомобиль]
+            <Button onClick={handleSearch} disabled={loading}>
+              {loading ? "[Поиск...]" : "[Найти автомобиль]"}
             </Button>
           </div>
         </div>
